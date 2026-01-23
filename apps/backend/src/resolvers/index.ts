@@ -12,7 +12,7 @@ type PaginationArgs = {
 type ArticleInput = {
   title: string;
   content: string;
-  imageUrl?: string;
+  imageUrl?: string | null;
 };
 
 const validateArticleInput = (input: ArticleInput) => {

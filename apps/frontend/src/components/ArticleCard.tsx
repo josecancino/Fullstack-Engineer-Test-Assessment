@@ -30,7 +30,7 @@ export function ArticleCard({ article, onDelete }: Props) {
 
         <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-50">
           <Link
-            href={`/articles/${article.id}/edit`}
+            href={`/article/${article.id}/edit`}
             className="text-xs font-bold text-blue-600 hover:text-blue-800 transition-colors py-2 px-1"
           >
             Edit

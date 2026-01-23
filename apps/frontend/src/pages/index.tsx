@@ -105,7 +105,7 @@ export default function Home({ initialArticles, initialHasMore }: Props) {
       <main className="flex-grow max-w-5xl mx-auto w-full px-6 py-8">
         <div className="flex justify-end mb-6">
           <Link
-            href="/articles/create"
+            href="/article/new"
             className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-sm font-bold rounded-xl text-white bg-blue-600 hover:bg-blue-700 shadow-lg shadow-blue-200 transition-all active:scale-95 uppercase tracking-wide"
           >
             Create Article

@@ -28,6 +28,24 @@ export const GET_ARTICLE = gql`
   ${SPORTS_ARTICLE_FIELDS}
 `;
 
+export const CREATE_ARTICLE = gql`
+  mutation CreateArticle($input: ArticleInput!) {
+    createArticle(input: $input) {
+      ...SportsArticleFields
+    }
+  }
+  ${SPORTS_ARTICLE_FIELDS}
+`;
+
+export const UPDATE_ARTICLE = gql`
+  mutation UpdateArticle($id: ID!, $input: ArticleInput!) {
+    updateArticle(id: $id, input: $input) {
+      ...SportsArticleFields
+    }
+  }
+  ${SPORTS_ARTICLE_FIELDS}
+`;
+
 export const DELETE_ARTICLE = gql`
   mutation DeleteArticle($id: ID!) {
     deleteArticle(id: $id)

@@ -1,12 +1,26 @@
 import { apolloClient } from './apolloClient';
-import { GET_ARTICLES, GET_ARTICLE, DELETE_ARTICLE } from './graphql';
+import {
+  GET_ARTICLES,
+  GET_ARTICLE,
+  CREATE_ARTICLE,
+  UPDATE_ARTICLE,
+  DELETE_ARTICLE,
+} from './graphql';
+
+export const ALLOWED_IMAGE_HOSTS = ['images.unsplash.com', 'plus.unsplash.com'];
 
 export type Article = {
   id: string;
   title: string;
   content: string;
-  imageUrl?: string;
+  imageUrl?: string | null;
   createdAt: string;
+};
+
+export type ArticleInput = {
+  title: string;
+  content: string;
+  imageUrl?: string | null;
 };
 
 type ArticlesResponse = {
@@ -15,6 +29,14 @@ type ArticlesResponse = {
 
 type ArticleResponse = {
   article: Article | null;
+};
+
+type CreateArticleResponse = {
+  createArticle: Article;
+};
+
+type UpdateArticleResponse = {
+  updateArticle: Article;
 };
 
 export async function getArticles(
@@ -45,6 +67,32 @@ export async function getArticle(id: string): Promise<Article | null> {
     console.error('Error fetching article:', error);
     return null;
   }
+}
+
+export async function createArticle(input: ArticleInput): Promise<Article> {
+  const { data } = await apolloClient.mutate<CreateArticleResponse>({
+    mutation: CREATE_ARTICLE,
+    variables: { input },
+  });
+
+  if (!data?.createArticle) {
+    throw new Error('Failed to create article');
+  }
+
+  return data.createArticle;
+}
+
+export async function updateArticle(id: string, input: ArticleInput): Promise<Article> {
+  const { data } = await apolloClient.mutate<UpdateArticleResponse>({
+    mutation: UPDATE_ARTICLE,
+    variables: { id, input },
+  });
+
+  if (!data?.updateArticle) {
+    throw new Error('Failed to update article');
+  }
+
+  return data.updateArticle;
 }
 
 export async function deleteArticle(id: string): Promise<void> {
