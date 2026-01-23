@@ -26,11 +26,7 @@ async function start() {
   const server = new ApolloServer({ typeDefs, resolvers });
   await server.start();
 
-  app.use(
-    '/graphql',
-    express.json(),
-    expressMiddleware(server, { context: async () => ({}) })
-  );
+  app.use('/graphql', express.json(), expressMiddleware(server, { context: async () => ({}) }));
 
   app.get('/health', (_req, res) => res.json({ status: 'ok' }));
 

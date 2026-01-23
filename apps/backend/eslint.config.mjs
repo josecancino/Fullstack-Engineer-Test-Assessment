@@ -3,15 +3,22 @@ import pluginJs from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import eslintConfigPrettier from 'eslint-config-prettier';
 
-export default tseslint.config(
+export default [
   {
     files: ['src/**/*.{js,mjs,cjs,ts}'],
-    languageOptions: { globals: globals.node },
-  },
-  {
     ignores: ['dist/**', 'node_modules/**'],
+    languageOptions: {
+      globals: globals.node,
+      parser: tseslint.parser,
+    },
+    plugins: {
+      '@typescript-eslint': tseslint.plugin,
+    },
+    rules: {
+      ...pluginJs.configs.recommended.rules,
+      ...tseslint.configs.recommended.rules,
+    },
   },
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
+
   eslintConfigPrettier,
-);
+];

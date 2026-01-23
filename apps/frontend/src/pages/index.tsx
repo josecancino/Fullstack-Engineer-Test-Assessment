@@ -4,7 +4,6 @@ import { useState, useCallback } from 'react';
 import Link from 'next/link';
 import { useMutation } from '@apollo/client/react';
 
-
 import { getArticles, Article } from '../lib/data';
 import { DELETE_ARTICLE } from '../lib/graphql';
 
@@ -69,7 +68,7 @@ export default function Home({ initialArticles, initialHasMore }: Props) {
 
         if (hasMore) {
           try {
-            const offset = prevArticles.length - 1; 
+            const offset = prevArticles.length - 1;
             const result = await getArticles(1, offset);
 
             if (result.articles.length > 0) {
@@ -78,8 +77,7 @@ export default function Home({ initialArticles, initialHasMore }: Props) {
             } else {
               setHasMore(false);
             }
-          } catch {
-          }
+          } catch {}
         } else {
           setHasMore(false);
         }
@@ -130,7 +128,6 @@ export default function Home({ initialArticles, initialHasMore }: Props) {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
-
     const offset = 0;
     const { articles, hasMore } = await getArticles(PAGE_SIZE, offset);
 
