@@ -92,7 +92,6 @@ export default function Home({ initialArticles, initialHasMore }: Props) {
         <LoadMore
           isLoading={isLoading}
           hasMore={hasMore}
-          itemCount={articles.length}
           onLoadMore={fetchMoreArticles}
         />
 

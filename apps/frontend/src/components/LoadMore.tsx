@@ -1,11 +1,10 @@
 type Props = {
     isLoading: boolean;
     hasMore: boolean;
-    itemCount: number;
     onLoadMore: () => void;
 };
 
-export function LoadMore({ isLoading, hasMore, itemCount, onLoadMore }: Props) {
+export function LoadMore({ isLoading, hasMore, onLoadMore }: Props) {
     return (
         <div className="mt-16 flex flex-col items-center justify-center py-12 border-t border-gray-100">
             {isLoading ? (

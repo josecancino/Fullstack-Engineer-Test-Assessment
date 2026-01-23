@@ -17,14 +17,6 @@ type ArticleResponse = {
     article: Article | null;
 };
 
-type CreateArticleResponse = {
-    createArticle: Article;
-};
-
-type UpdateArticleResponse = {
-    updateArticle: Article;
-};
-
 export async function getArticles(limit = 10, offset = 0): Promise<{ articles: Article[]; hasMore: boolean }> {
     const { data } = await apolloClient.query<ArticlesResponse>({
         query: GET_ARTICLES,
