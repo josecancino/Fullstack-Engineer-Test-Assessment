@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Article } from '../lib/data';
-import { ArticleImage } from './ArticleImage';
+import { ArticleCardImage } from './ArticleCardImage';
 
 type Props = {
   article: Article;
@@ -11,14 +11,14 @@ export function ArticleCard({ article, onDelete }: Props) {
   return (
     <article className="group flex flex-col bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-[box-shadow,transform] duration-300 will-change-transform">
       <Link
-        href={`/articles/${article.id}`}
-        className="block relative aspect-[16/10] overflow-hidden bg-gray-100"
+        href={`/article/${article.id}`}
+        className="block relative aspect-video overflow-hidden bg-gray-100"
       >
-        <ArticleImage src={article.imageUrl} title={article.title} />
+        <ArticleCardImage src={article.imageUrl} title={article.title} focus="top" />
       </Link>
 
       <div className="p-6 flex flex-col flex-grow">
-        <Link href={`/articles/${article.id}`} className="block mb-3">
+        <Link href={`/article/${article.id}`} className="block mb-3">
           <h2 className="text-xl font-bold text-gray-900 leading-tight group-hover:underline underline-offset-4 decoration-blue-600/30">
             {article.title}
           </h2>

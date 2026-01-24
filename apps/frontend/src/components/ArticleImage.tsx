@@ -1,45 +1,53 @@
 import Image from 'next/image';
 import { useState } from 'react';
+import { isAllowedHost, buildUnsplashUrl } from '../lib/images';
+import { ImageFallback } from './ImageFallback';
 
-const ALLOWED_IMAGE_HOSTS = ['images.unsplash.com'];
-
-function isAllowedHost(url: string) {
-  try {
-    const { hostname } = new URL(url);
-    return ALLOWED_IMAGE_HOSTS.includes(hostname);
-  } catch {
-    return false;
-  }
-}
-
+type ImageOrientation = 'portrait' | 'landscape' | null;
 type Props = {
   src?: string | null;
   title: string;
+  priority?: boolean;
+  imageOrientation?: ImageOrientation;
 };
 
-export function ArticleImage({ src, title }: Props) {
+export function ArticleImage({ src, title, priority = false, imageOrientation }: Props) {
   const [hasError, setHasError] = useState(false);
-  const showFallback = !src || !isAllowedHost(src) || hasError;
+
+  const allowed = !!src && isAllowedHost(src);
+  const showFallback = !src || !allowed || hasError;
+
+  let finalSrc = '';
+
+  if (src && allowed) {
+    if (!imageOrientation) {
+      finalSrc = buildUnsplashUrl(src, { w: '1600' });
+    } else if (imageOrientation === 'landscape') {
+      finalSrc = buildUnsplashUrl(src, { w: '1200', h: '675', crop: 'entropy' });
+    } else {
+      finalSrc = buildUnsplashUrl(src, { w: '1080', h: '1350', crop: 'entropy' });
+    }
+  }
+
+  const wrapperClass =
+    imageOrientation === 'portrait'
+      ? 'relative w-full aspect-[4/5] bg-white'
+      : 'relative w-full aspect-video bg-white';
+
+  if (showFallback) return <ImageFallback title={title} className={wrapperClass} />;
 
   return (
-    <>
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center text-white p-6 text-center">
-        <span className="text-2xl font-black opacity-20 uppercase tracking-tighter select-none line-clamp-2">
-          {title}
-        </span>
-      </div>
-
-      {!showFallback && (
-        <Image
-          src={src}
-          alt={title}
-          fill
-          loading="lazy"
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-opacity duration-500"
-          onError={() => setHasError(true)}
-        />
-      )}
-    </>
+    <div className={wrapperClass}>
+      <Image
+        src={finalSrc}
+        alt={title}
+        fill
+        priority={priority}
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
+        className="object-cover"
+        style={{ objectPosition: 'center' }}
+        onError={() => setHasError(true)}
+      />
+    </div>
   );
 }
