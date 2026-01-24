@@ -1,11 +1,13 @@
 export const typeDefs = `#graphql
+  scalar DateTime
+
   type SportsArticle {
     id: ID!
     title: String!
     content: String!
     imageUrl: String
-    createdAt: String
-    deletedAt: String
+    createdAt: DateTime
+    deletedAt: DateTime
   }
 
   input ArticleInput {

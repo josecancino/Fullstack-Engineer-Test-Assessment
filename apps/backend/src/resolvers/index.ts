@@ -1,6 +1,32 @@
 import { AppDataSource } from '../data-source';
 import { SportsArticle } from '../entities/SportsArticle';
-import { GraphQLError } from 'graphql';
+import { GraphQLError, GraphQLScalarType, Kind } from 'graphql';
+
+export const DateTimeScalar = new GraphQLScalarType({
+  name: 'DateTime',
+  description: 'ISO 8601 DateTime in UTC',
+
+  serialize(value) {
+    if (!(value instanceof Date)) {
+      throw new Error('DateTime must be a Date');
+    }
+    return value.toISOString();
+  },
+
+  parseValue(value) {
+    if (typeof value !== 'string') {
+      throw new Error('DateTime must be a string');
+    }
+    return new Date(value);
+  },
+
+  parseLiteral(ast) {
+    if (ast.kind !== Kind.STRING) {
+      return null;
+    }
+    return new Date(ast.value);
+  },
+});
 
 const articleRepo = AppDataSource.getRepository(SportsArticle);
 
@@ -48,6 +74,7 @@ const normalizePagination = ({ limit, offset }: PaginationArgs) => {
 };
 
 export const resolvers = {
+  DateTime: DateTimeScalar,
   Query: {
     articles: async (_parent: unknown, args: PaginationArgs) => {
       const { take, skip } = normalizePagination(args);
