@@ -10,6 +10,9 @@ export const DateTimeScalar = new GraphQLScalarType({
     if (!(value instanceof Date)) {
       throw new Error('DateTime must be a Date');
     }
+    if (isNaN(value.getTime())) {
+      throw new Error('DateTime must be a valid Date');
+    }
     return value.toISOString();
   },
 
@@ -17,14 +20,25 @@ export const DateTimeScalar = new GraphQLScalarType({
     if (typeof value !== 'string') {
       throw new Error('DateTime must be a string');
     }
-    return new Date(value);
+    const date = new Date(value);
+    if (isNaN(date.getTime())) {
+      throw new Error('DateTime must be a valid ISO date string');
+    }
+    return date;
   },
 
   parseLiteral(ast) {
+    if (ast.kind === Kind.INT) {
+      return new Date(parseInt(ast.value, 10));
+    }
     if (ast.kind !== Kind.STRING) {
       return null;
     }
-    return new Date(ast.value);
+    const date = new Date(ast.value);
+    if (isNaN(date.getTime())) {
+      return null;
+    }
+    return date;
   },
 });
 
@@ -80,7 +94,7 @@ export const resolvers = {
       const { take, skip } = normalizePagination(args);
 
       return articleRepo.find({
-        order: { createdAt: 'DESC' },
+        order: { createdAt: 'DESC', id: 'DESC' },
         take,
         skip,
       });
