@@ -1,5 +1,12 @@
 # Sports Articles Full-Stack Application
 
+![Node.js](https://img.shields.io/badge/Node.js-18.x-339933?logo=node.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js&logoColor=white)
+![GraphQL](https://img.shields.io/badge/GraphQL-Apollo-E10098?logo=graphql&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1?logo=postgresql&logoColor=white)
+![Tests](https://img.shields.io/badge/Tests-32%20passed-brightgreen?logo=checkmarx&logoColor=white)
+
 A modern full-stack web application for managing sports articles with a GraphQL API backend and a Next.js frontend.  
 This project was built as part of a **Fullstack Engineer Test Assessment** and strictly follows the provided requirements.
 
@@ -103,7 +110,12 @@ pnpm --filter backend seed
 
 ### 5. Frontend Configuration
 
-Create `apps/frontend/.env`:
+```bash
+# Copy environment template
+cp apps/frontend/.env.example apps/frontend/.env
+```
+
+The default values should work for local development:
 
 ```env
 NEXT_PUBLIC_GRAPHQL_URL=http://localhost:4000/graphql
@@ -252,7 +264,117 @@ Infinite loading was intentionally not implemented to keep the focus on:
 
 ---
 
-## 🧪 Validation & Error Handling
+## 🧹 Code Quality
+
+This project includes ESLint and Prettier for code quality and consistent formatting.
+
+```bash
+# Run linting across all workspaces
+pnpm lint
+
+# Format code across all workspaces
+pnpm format
+```
+
+You can also run these commands for individual workspaces:
+
+```bash
+# Backend only
+pnpm --filter backend lint
+pnpm --filter backend format
+
+# Frontend only
+pnpm --filter frontend lint
+pnpm --filter frontend format
+```
+
+---
+
+## 🧪 Testing
+
+Both backend and frontend include test suites to ensure code quality and functionality.
+
+### Backend Tests (Jest)
+
+```bash
+pnpm --filter backend test
+```
+
+Backend tests cover:
+- GraphQL resolvers (queries and mutations)
+- Input validation
+- Error handling
+
+<details>
+<summary>📋 Backend Test Output</summary>
+
+```
+> backend@1.0.0 test
+> jest --runInBand
+
+ PASS  test/pagination/pagination.drift.test.ts
+ PASS  test/validations/mutations.validation.test.ts
+ PASS  test/validations/queries.validation.test.ts
+ PASS  test/scalars/datetime.scalar.test.ts
+
+Test Suites: 4 passed, 4 total
+Tests:       30 passed, 30 total
+Snapshots:   0 total
+Time:        1.361 s
+Ran all test suites.
+```
+
+</details>
+
+### Frontend Tests (Playwright E2E)
+
+```bash
+# Make sure backend and frontend are running first
+pnpm --filter frontend test:e2e
+```
+
+End-to-end tests cover:
+- Article listing page
+- Create, edit, and delete flows
+- Form validation
+- Navigation
+
+<details>
+<summary>📋 Frontend E2E Test Output</summary>
+
+```
+> frontend@0.1.0 test:e2e
+> playwright test
+
+Running 2 tests using 2 workers
+
+[chromium] › e2e/crud.spec.ts:11:7 › Article CRUD Flow › should create, view, edit, and delete an article
+
+--- Step 1: Navigating to Home ---
+--- Step 2: Creating Article with title: "E2E Test Article" ---
+Article Created. ID: 950
+
+--- Step 3: Verifying details for Article ID: 950 ---
+--- Step 4: Verifying Article appears in Home list ---
+--- Step 5: Editing Article ID: 950 -> New Title: "E2E Test Article - Updated" ---
+--- Step 6: Verifying Updated Title in Home ---
+--- Step 7: Deleting Article ID: 950 ---
+--- Step 8: Verifying Article ID: 950 is gone ---
+
+[chromium] › e2e/pagination.spec.ts:4:7 › Pagination and Deletion Behavior
+
+Initial IDs (20): ['949', '948', '947', ...]
+Deleting ID: 947
+Final IDs (20): ['949', '948', '946', ...]
+
+  2 passed (4.5s)
+```
+
+</details>
+
+---
+
+## ✅ Validation & Error Handling
 
 - Client-side validation for required fields (`title`, `content`)
 - Server-side validation with readable GraphQL errors
