@@ -8,8 +8,8 @@ export default function CreateArticlePage() {
   const router = useRouter();
 
   const handleCreate = async (data: ArticleInput) => {
-    await createArticle(data);
-    router.push('/');
+    const article = await createArticle(data);
+    router.push(`/article/${article.id}`);
   };
 
   return (

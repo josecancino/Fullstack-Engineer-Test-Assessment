@@ -17,6 +17,7 @@ export function LoadMore({ isLoading, hasMore, onLoadMore }: Props) {
       ) : hasMore ? (
         <button
           onClick={onLoadMore}
+          data-testid="load-more-button"
           className="px-12 py-3 bg-white border-2 border-red-600 text-red-600 font-bold rounded-md shadow-sm hover:bg-red-50 transition-all active:scale-95 uppercase tracking-widest text-sm"
         >
           See More

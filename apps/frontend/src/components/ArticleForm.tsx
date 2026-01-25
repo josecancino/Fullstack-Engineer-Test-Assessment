@@ -136,6 +136,7 @@ export default function ArticleForm({ initialData, onSubmit, submitLabel }: Arti
             type="text"
             name="title"
             id="title"
+            data-testid="article-title-input"
             defaultValue={initialData?.title}
             disabled={isSubmitting}
             className={`w-full px-6 py-4 bg-white border-2 rounded-2xl focus:ring-4 focus:ring-blue-100 focus:border-blue-600 outline-none transition-all font-bold text-lg placeholder:text-gray-300 ${
@@ -161,6 +162,7 @@ export default function ArticleForm({ initialData, onSubmit, submitLabel }: Arti
             type="url"
             name="imageUrl"
             id="imageUrl"
+            data-testid="article-image-url-input"
             defaultValue={initialData?.imageUrl ?? ''}
             disabled={isSubmitting}
             className={`w-full px-6 py-4 bg-white border-2 rounded-2xl focus:ring-4 focus:ring-blue-100 focus:border-blue-600 outline-none transition-all font-medium placeholder:text-gray-300 ${
@@ -187,6 +189,7 @@ export default function ArticleForm({ initialData, onSubmit, submitLabel }: Arti
           <textarea
             name="content"
             id="content"
+            data-testid="article-content-input"
             rows={10}
             defaultValue={initialData?.content}
             disabled={isSubmitting}
@@ -217,6 +220,7 @@ export default function ArticleForm({ initialData, onSubmit, submitLabel }: Arti
 
         <button
           type="submit"
+          data-testid="submit-article-button"
           disabled={isSubmitting}
           className="w-full md:w-auto bg-blue-600 hover:bg-blue-700 active:scale-[0.98] text-white font-black py-4 px-12 rounded-2xl transition-all disabled:opacity-50 shadow-lg shadow-blue-200/50 flex items-center justify-center gap-3 uppercase text-xs tracking-widest"
         >

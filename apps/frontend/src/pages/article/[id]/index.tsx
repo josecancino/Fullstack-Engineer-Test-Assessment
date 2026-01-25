@@ -33,7 +33,10 @@ export default function ArticleDetailsPage({ article }: Props) {
       <main className="mx-auto max-w-4xl px-6 py-10">
         <article className="flex flex-col items-center">
           <header className="w-full max-w-3xl text-center mb-10">
-            <h1 className="text-4xl md:text-6xl font-black text-gray-900 tracking-tight leading-tight mb-4">
+            <h1
+              data-testid="article-detail-title"
+              className="text-4xl md:text-6xl font-black text-gray-900 tracking-tight leading-tight mb-4"
+            >
               {article.title}
             </h1>
 
@@ -53,7 +56,10 @@ export default function ArticleDetailsPage({ article }: Props) {
             />
           </div>
 
-          <div className="w-full max-w-2xl prose prose-lg md:prose-xl prose-blue text-gray-800 whitespace-pre-wrap">
+          <div
+            data-testid="article-detail-content"
+            className="w-full max-w-2xl prose prose-lg md:prose-xl prose-blue text-gray-800 whitespace-pre-wrap"
+          >
             {article.content}
           </div>
         </article>
