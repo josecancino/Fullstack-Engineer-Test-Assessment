@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import { useState } from 'react';
 import { isAllowedHost, buildUnsplashUrl } from '../lib/images';
 import { ImageFallback } from './ImageFallback';
+import { useImageError } from '../hooks/useImageError';
 
 type ImageOrientation = 'portrait' | 'landscape' | null;
 type Props = {
@@ -12,7 +12,7 @@ type Props = {
 };
 
 export function ArticleImage({ src, title, priority = false, imageOrientation }: Props) {
-  const [hasError, setHasError] = useState(false);
+  const { hasError, handleError } = useImageError(src);
 
   const allowed = !!src && isAllowedHost(src);
   const showFallback = !src || !allowed || hasError;
@@ -46,7 +46,7 @@ export function ArticleImage({ src, title, priority = false, imageOrientation }:
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
         className="object-cover"
         style={{ objectPosition: 'center' }}
-        onError={() => setHasError(true)}
+        onError={handleError}
       />
     </div>
   );

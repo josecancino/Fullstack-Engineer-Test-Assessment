@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import { useState } from 'react';
 import { isAllowedHost, buildUnsplashUrl } from '../lib/images';
 import { ImageFallback } from './ImageFallback';
+import { useImageError } from '../hooks/useImageError';
 
 type Props = {
   src?: string | null;
@@ -11,7 +11,7 @@ type Props = {
 };
 
 export function ArticleCardImage({ src, title, priority = false, focus = 'center' }: Props) {
-  const [hasError, setHasError] = useState(false);
+  const { hasError, handleError } = useImageError(src);
 
   const allowed = !!src && isAllowedHost(src);
   const showFallback = !src || !allowed || hasError;
@@ -41,7 +41,7 @@ export function ArticleCardImage({ src, title, priority = false, focus = 'center
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 320px"
         className="object-cover"
         style={{ objectPosition }}
-        onError={() => setHasError(true)}
+        onError={handleError}
       />
     </div>
   );
