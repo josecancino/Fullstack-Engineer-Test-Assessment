@@ -77,7 +77,7 @@ export default function Home({ initialArticles, initialHasMore }: Props) {
             } else {
               setHasMore(false);
             }
-          } catch { }
+          } catch {}
         } else {
           setHasMore(false);
         }

@@ -13,7 +13,7 @@ const sportsArticles = [
   {
     title: 'NBA Playoffs: Lakers Survive Game 7 Thriller',
     content:
-      "The Los Angeles Lakers edged out the Nuggets in a nail-biting Game 7 showdown that went down to the final buzzer. It was a game of runs, with both teams trading blows in a high-octane atmosphere. \n\nLeBron James led the way with a triple-double, controlling the game in the clutch moments. His vision and decision-making were the difference maker against a resilient Denver defense. \n\nThe final play was pure drama—a blocked shot followed by a fast-break dunk sealed the deal. The Lakers now advance to the Conference Finals, looking stronger than ever.",
+      'The Los Angeles Lakers edged out the Nuggets in a nail-biting Game 7 showdown that went down to the final buzzer. It was a game of runs, with both teams trading blows in a high-octane atmosphere. \n\nLeBron James led the way with a triple-double, controlling the game in the clutch moments. His vision and decision-making were the difference maker against a resilient Denver defense. \n\nThe final play was pure drama—a blocked shot followed by a fast-break dunk sealed the deal. The Lakers now advance to the Conference Finals, looking stronger than ever.',
     createdAt: new Date('2024-05-19'),
     imageUrl: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&q=80',
   },
@@ -62,7 +62,7 @@ const sportsArticles = [
   {
     title: 'Olympics 2024: New Security Measures Announced',
     content:
-      "Paris has unveiled updated security plans ahead of the 2024 Summer Olympics. The measures include increased police presence, advanced surveillance technology, and strict access controls around venues. \n\nOfficials emphasized that safety is the top priority for athletes and spectators alike. However, some local groups have raised concerns about traffic disruptions. \n\nThe Opening Ceremony on the Seine remains the focal point of the security operation, presenting unique logistical challenges.",
+      'Paris has unveiled updated security plans ahead of the 2024 Summer Olympics. The measures include increased police presence, advanced surveillance technology, and strict access controls around venues. \n\nOfficials emphasized that safety is the top priority for athletes and spectators alike. However, some local groups have raised concerns about traffic disruptions. \n\nThe Opening Ceremony on the Seine remains the focal point of the security operation, presenting unique logistical challenges.',
     createdAt: new Date('2024-05-12'),
     imageUrl: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=800&q=80', // Athletics track
   },
@@ -82,56 +82,64 @@ const sportsArticles = [
   },
   {
     title: 'Boxing: Heavyweight Superfight Announced',
-    content: 'Two heavyweight champions have agreed to a long-awaited unification bout scheduled for later this year in Riyadh...',
+    content:
+      'Two heavyweight champions have agreed to a long-awaited unification bout scheduled for later this year in Riyadh...',
     createdAt: new Date('2024-05-09'),
     imageUrl: 'https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=800&q=80',
   },
   {
     title: 'Cricket: India Clinch T20 Series',
     content:
-      'India secured the T20 series after a stellar all-round performance in the final match. Kohli\'s 85 not out was the backbone of the innings...',
+      "India secured the T20 series after a stellar all-round performance in the final match. Kohli's 85 not out was the backbone of the innings...",
     createdAt: new Date('2024-05-08'),
     imageUrl: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=800&q=80&v=2', // Reliable stadium
   },
   {
     title: 'Rugby: All Blacks Dominate Opening Test',
-    content: 'New Zealand delivered a commanding performance in their first Test of the season, defeating France by 20 points...',
+    content:
+      'New Zealand delivered a commanding performance in their first Test of the season, defeating France by 20 points...',
     createdAt: new Date('2024-05-07'),
     imageUrl: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80',
   },
   {
     title: 'Bundesliga: Bayern Win Seven-Goal Thriller',
-    content: 'Bayern Munich outlasted Dortmund in an explosive 4–3 match that showcased the best of German football...',
+    content:
+      'Bayern Munich outlasted Dortmund in an explosive 4–3 match that showcased the best of German football...',
     createdAt: new Date('2024-05-06'),
     imageUrl: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80',
   },
   {
     title: "Cycling: New Leader in Giro d'Italia",
-    content: 'A surprise breakaway rider claimed the pink jersey after Stage 9, upsetting the pre-race favorites on the mountain climb...',
+    content:
+      'A surprise breakaway rider claimed the pink jersey after Stage 9, upsetting the pre-race favorites on the mountain climb...',
     createdAt: new Date('2024-05-05'),
     imageUrl: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&q=80',
   },
   {
     title: 'NFL: Draft Class Shows Strong Quarterback Talent',
-    content: "Analysts praise this year's draft as one of the deepest QB classes in a decade, with four quarterbacks taken in the top 10...",
+    content:
+      "Analysts praise this year's draft as one of the deepest QB classes in a decade, with four quarterbacks taken in the top 10...",
     createdAt: new Date('2024-05-04'),
     imageUrl: 'https://images.unsplash.com/photo-1566577739112-5180d4bf9390?w=800&q=80',
   },
   {
     title: 'Baseball: Yankees Extend AL East Lead',
-    content: 'The New York Yankees won their fifth straight game behind dominant pitching from their ace...',
+    content:
+      'The New York Yankees won their fifth straight game behind dominant pitching from their ace...',
     createdAt: new Date('2024-05-03'),
     imageUrl: 'https://images.unsplash.com/photo-1508345228704-935cc84bf5e2?w=800&q=80',
   },
   {
     title: 'WNBA: Rookie Shines in Season Debut',
-    content: 'A standout rookie delivered 28 points in her first professional game, signaling the arrival of a new superstar...',
+    content:
+      'A standout rookie delivered 28 points in her first professional game, signaling the arrival of a new superstar...',
     createdAt: new Date('2024-05-02'),
     imageUrl: 'https://images.unsplash.com/photo-1518063319789-7217e6706b04?w=800&q=80&v=2', // Generic basketball
   },
   {
     title: 'Golf: Masters Preview Highlights Top Contenders',
-    content: 'Experts weigh in on which golfers are best positioned to win the green jacket at Augusta this year...',
+    content:
+      'Experts weigh in on which golfers are best positioned to win the green jacket at Augusta this year...',
     createdAt: new Date('2024-05-01'),
     imageUrl: 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&q=80',
   },

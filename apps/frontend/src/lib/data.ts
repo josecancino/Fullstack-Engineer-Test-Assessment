@@ -43,14 +43,18 @@ export async function getArticles(
   limit = 10,
   offset = 0
 ): Promise<{ articles: Article[]; hasMore: boolean }> {
+  const fetchLimit = limit + 1;
+
   const { data } = await apolloClient.query<ArticlesResponse>({
     query: GET_ARTICLES,
-    variables: { limit, offset },
+    variables: { limit: fetchLimit, offset },
     fetchPolicy: 'no-cache',
   });
 
-  const articles = data?.articles ?? [];
-  const hasMore = articles.length === limit;
+  const rawArticles = data?.articles ?? [];
+  const hasMore = rawArticles.length > limit;
+
+  const articles = hasMore ? rawArticles.slice(0, limit) : rawArticles;
 
   return { articles, hasMore };
 }
