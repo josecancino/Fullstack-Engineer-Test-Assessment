@@ -65,6 +65,9 @@ docker compose up -d
 
 # Check status
 docker compose ps
+
+# Create test database (required for running tests)
+docker exec fullstack-engineer-test-assessment-postgres-1 createdb -U postgres sports_articles_test
 ```
 
 The database and schema are created automatically by the container.
@@ -295,6 +298,8 @@ pnpm --filter frontend format
 Both backend and frontend include test suites to ensure code quality and functionality.
 
 ### Backend Tests (Jest)
+
+Backend tests run in an **isolated environment** using a separate database (`sports_articles_test`) to prevent data loss in the development environment.
 
 ```bash
 pnpm --filter backend test
