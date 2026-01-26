@@ -29,7 +29,7 @@ export class ArticlePage {
       const url = this.page.url();
       const articleId = url.split('/').pop();
       if (!articleId) throw new Error('Article ID not found in URL');
-      
+
       return articleId;
     });
   }
@@ -39,7 +39,7 @@ export class ArticlePage {
       if (!this.page.url().includes(`/article/${id}`)) {
         await this.page.goto(`/article/${id}`);
       }
-      
+
       await expect(this.page.getByTestId('article-detail-title')).toHaveText(title);
       await expect(this.page.getByTestId('article-detail-content')).toHaveText(content);
     });
@@ -48,13 +48,13 @@ export class ArticlePage {
   async editArticle(id: string, newTitle: string) {
     await test.step('Edit Article', async () => {
       await this.goto();
-      
+
       await this.page.getByTestId(`edit-article-${id}`).click();
       await expect(this.page).toHaveURL(new RegExp(`/article/${id}/edit`));
-      
+
       await this.page.getByTestId('article-title-input').fill(newTitle);
       await this.page.getByTestId('submit-article-button').click();
-      
+
       await expect(this.page).toHaveURL(new RegExp(`/article/${id}`));
       await expect(this.page.getByTestId('article-detail-title')).toHaveText(newTitle);
     });
@@ -70,9 +70,9 @@ export class ArticlePage {
   async deleteArticle(id: string) {
     await test.step('Delete Article', async () => {
       await this.goto();
-      
-      this.page.once('dialog', dialog => dialog.accept());
-      
+
+      this.page.once('dialog', (dialog) => dialog.accept());
+
       await this.page.getByTestId(`delete-article-${id}`).click();
 
       await expect(this.page.getByTestId(`article-title-${id}`)).toHaveCount(0);

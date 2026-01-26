@@ -26,9 +26,9 @@ describe('Mutation validations', () => {
         content: 'Valid content',
       };
 
-      await expect(
-        resolvers.Mutation.createArticle(null, { input })
-      ).rejects.toThrow('Title and content are required');
+      await expect(resolvers.Mutation.createArticle(null, { input })).rejects.toThrow(
+        'Title and content are required'
+      );
     });
 
     it('throws error when content is empty', async () => {
@@ -37,9 +37,9 @@ describe('Mutation validations', () => {
         content: '',
       };
 
-      await expect(
-        resolvers.Mutation.createArticle(null, { input })
-      ).rejects.toThrow('Title and content are required');
+      await expect(resolvers.Mutation.createArticle(null, { input })).rejects.toThrow(
+        'Title and content are required'
+      );
     });
 
     it('throws error when title is only whitespace', async () => {
@@ -48,9 +48,9 @@ describe('Mutation validations', () => {
         content: 'Valid content',
       };
 
-      await expect(
-        resolvers.Mutation.createArticle(null, { input })
-      ).rejects.toThrow('Title and content are required');
+      await expect(resolvers.Mutation.createArticle(null, { input })).rejects.toThrow(
+        'Title and content are required'
+      );
     });
 
     it('throws error when content is only whitespace', async () => {
@@ -59,9 +59,9 @@ describe('Mutation validations', () => {
         content: '   ',
       };
 
-      await expect(
-        resolvers.Mutation.createArticle(null, { input })
-      ).rejects.toThrow('Title and content are required');
+      await expect(resolvers.Mutation.createArticle(null, { input })).rejects.toThrow(
+        'Title and content are required'
+      );
     });
   });
 
@@ -72,13 +72,13 @@ describe('Mutation validations', () => {
         content: 'Valid content',
       };
 
-      await expect(
-        resolvers.Mutation.updateArticle(null, { id: '', input })
-      ).rejects.toThrow('Invalid article id');
+      await expect(resolvers.Mutation.updateArticle(null, { id: '', input })).rejects.toThrow(
+        'Invalid article id'
+      );
 
-      await expect(
-        resolvers.Mutation.updateArticle(null, { id: '   ', input })
-      ).rejects.toThrow('Invalid article id');
+      await expect(resolvers.Mutation.updateArticle(null, { id: '   ', input })).rejects.toThrow(
+        'Invalid article id'
+      );
     });
 
     it('throws error when id is invalid (not a number)', async () => {
@@ -98,9 +98,9 @@ describe('Mutation validations', () => {
         content: 'Valid content',
       };
 
-      await expect(
-        resolvers.Mutation.updateArticle(null, { id: '999999', input })
-      ).rejects.toThrow('Article not found');
+      await expect(resolvers.Mutation.updateArticle(null, { id: '999999', input })).rejects.toThrow(
+        'Article not found'
+      );
     });
 
     it('throws error when title is empty', async () => {
@@ -144,25 +144,25 @@ describe('Mutation validations', () => {
 
   describe('deleteArticle', () => {
     it('throws error when id is empty or whitespace', async () => {
-      await expect(
-        resolvers.Mutation.deleteArticle(null, { id: '' })
-      ).rejects.toThrow('Invalid article id');
+      await expect(resolvers.Mutation.deleteArticle(null, { id: '' })).rejects.toThrow(
+        'Invalid article id'
+      );
 
-      await expect(
-        resolvers.Mutation.deleteArticle(null, { id: '   ' })
-      ).rejects.toThrow('Invalid article id');
+      await expect(resolvers.Mutation.deleteArticle(null, { id: '   ' })).rejects.toThrow(
+        'Invalid article id'
+      );
     });
 
     it('throws error when id is invalid', async () => {
-      await expect(
-        resolvers.Mutation.deleteArticle(null, { id: 'invalid-id' })
-      ).rejects.toThrow('ID must be a number');
+      await expect(resolvers.Mutation.deleteArticle(null, { id: 'invalid-id' })).rejects.toThrow(
+        'ID must be a number'
+      );
     });
 
     it('throws error when article does not exist', async () => {
-      await expect(
-        resolvers.Mutation.deleteArticle(null, { id: '999999' })
-      ).rejects.toThrow('Article not found');
+      await expect(resolvers.Mutation.deleteArticle(null, { id: '999999' })).rejects.toThrow(
+        'Article not found'
+      );
     });
   });
 });

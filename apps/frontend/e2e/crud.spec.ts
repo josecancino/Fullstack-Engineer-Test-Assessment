@@ -5,7 +5,8 @@ test.describe('Article CRUD Flow', () => {
   const timestamp = Date.now();
   const articleTitle = `E2E Test Article ${timestamp}`;
   const articleContent = 'This is a test article content created by Playwright E2E tests.';
-  const articleImage = 'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=3538&auto=format&fit=crop';
+  const articleImage =
+    'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=3538&auto=format&fit=crop';
   const updatedTitle = `${articleTitle} - Updated`;
 
   test('should create, view, edit, and delete an article', async ({ page }) => {
@@ -34,7 +35,9 @@ test.describe('Article CRUD Flow', () => {
     });
 
     await test.step('5. Edit Article', async () => {
-      console.log(`\n--- Step 5: Editing Article ID: ${articleId} -> New Title: "${updatedTitle}" ---`);
+      console.log(
+        `\n--- Step 5: Editing Article ID: ${articleId} -> New Title: "${updatedTitle}" ---`
+      );
       await articlePage.editArticle(articleId, updatedTitle);
     });
 
