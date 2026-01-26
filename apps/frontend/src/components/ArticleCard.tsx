@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { Article } from '../lib/data';
-import { ArticleCardImage } from './ArticleCardImage';
+import { Article } from '@/lib/data';
+import { ArticleCardImage } from '@/components/ArticleCardImage';
 
 type Props = {
   article: Article;

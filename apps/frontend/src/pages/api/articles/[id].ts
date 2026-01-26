@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { getArticle, deleteArticle } from '../../../lib/data';
+import { getArticle, deleteArticle } from '@/lib/data';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { id } = req.query;

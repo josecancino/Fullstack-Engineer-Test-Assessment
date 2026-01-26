@@ -1,4 +1,4 @@
-import { ALLOWED_IMAGE_HOSTS } from './data';
+import { ALLOWED_IMAGE_HOSTS } from '@/lib/data';
 
 export function isAllowedHost(url: string) {
   try {

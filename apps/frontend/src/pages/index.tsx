@@ -4,13 +4,13 @@ import { useState, useCallback } from 'react';
 import Link from 'next/link';
 import { useMutation } from '@apollo/client/react';
 
-import { getArticles, Article } from '../lib/data';
-import { DELETE_ARTICLE } from '../lib/graphql';
+import { getArticles, Article } from '@/lib/data';
+import { DELETE_ARTICLE } from '@/lib/graphql';
 
-import { Navbar } from '../components/Navbar';
-import { ArticleCard } from '../components/ArticleCard';
-import { EmptyState } from '../components/EmptyState';
-import { LoadMore } from '../components/LoadMore';
+import { Navbar } from '@/components/Navbar';
+import { ArticleCard } from '@/components/ArticleCard';
+import { EmptyState } from '@/components/EmptyState';
+import { LoadMore } from '@/components/LoadMore';
 
 type DeleteArticleResult = { deleteArticle: boolean };
 type DeleteArticleVars = { id: string };
@@ -77,7 +77,7 @@ export default function Home({ initialArticles, initialHasMore }: Props) {
             } else {
               setHasMore(false);
             }
-          } catch {}
+          } catch { }
         } else {
           setHasMore(false);
         }

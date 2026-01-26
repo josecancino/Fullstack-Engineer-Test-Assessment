@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import { ArticleInput, ALLOWED_IMAGE_HOSTS } from '../lib/data';
+import { ArticleInput, ALLOWED_IMAGE_HOSTS } from '@/lib/data';
 
 type ArticleFormProps = {
   initialData?: ArticleInput;
@@ -139,9 +139,8 @@ export default function ArticleForm({ initialData, onSubmit, submitLabel }: Arti
             data-testid="article-title-input"
             defaultValue={initialData?.title}
             disabled={isSubmitting}
-            className={`w-full px-6 py-4 bg-white border-2 rounded-2xl focus:ring-4 focus:ring-blue-100 focus:border-blue-600 outline-none transition-all font-bold text-lg placeholder:text-gray-300 ${
-              errors.title ? 'border-red-200 bg-red-50/30' : 'border-gray-100 hover:border-gray-200'
-            }`}
+            className={`w-full px-6 py-4 bg-white border-2 rounded-2xl focus:ring-4 focus:ring-blue-100 focus:border-blue-600 outline-none transition-all font-bold text-lg placeholder:text-gray-300 ${errors.title ? 'border-red-200 bg-red-50/30' : 'border-gray-100 hover:border-gray-200'
+              }`}
             placeholder="The evolution of the #10 role..."
           />
           {errors.title && (
@@ -165,11 +164,10 @@ export default function ArticleForm({ initialData, onSubmit, submitLabel }: Arti
             data-testid="article-image-url-input"
             defaultValue={initialData?.imageUrl ?? ''}
             disabled={isSubmitting}
-            className={`w-full px-6 py-4 bg-white border-2 rounded-2xl focus:ring-4 focus:ring-blue-100 focus:border-blue-600 outline-none transition-all font-medium placeholder:text-gray-300 ${
-              errors.imageUrl
+            className={`w-full px-6 py-4 bg-white border-2 rounded-2xl focus:ring-4 focus:ring-blue-100 focus:border-blue-600 outline-none transition-all font-medium placeholder:text-gray-300 ${errors.imageUrl
                 ? 'border-red-200 bg-red-50/30'
                 : 'border-gray-100 hover:border-gray-200'
-            }`}
+              }`}
             placeholder="https://images.unsplash.com/..."
           />
           {errors.imageUrl && (
@@ -193,11 +191,10 @@ export default function ArticleForm({ initialData, onSubmit, submitLabel }: Arti
             rows={10}
             defaultValue={initialData?.content}
             disabled={isSubmitting}
-            className={`w-full px-6 py-4 bg-white border-2 rounded-2xl focus:ring-4 focus:ring-blue-100 focus:border-blue-600 outline-none transition-all resize-none font-medium leading-relaxed placeholder:text-gray-300 ${
-              errors.content
+            className={`w-full px-6 py-4 bg-white border-2 rounded-2xl focus:ring-4 focus:ring-blue-100 focus:border-blue-600 outline-none transition-all resize-none font-medium leading-relaxed placeholder:text-gray-300 ${errors.content
                 ? 'border-red-200 bg-red-50/30'
                 : 'border-gray-100 hover:border-gray-200'
-            }`}
+              }`}
             placeholder="Deep dive into the tactical setup and player performance..."
           />
           {errors.content && (

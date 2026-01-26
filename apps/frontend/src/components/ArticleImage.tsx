@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import { isAllowedHost, buildUnsplashUrl } from '../lib/images';
-import { ImageFallback } from './ImageFallback';
-import { useImageError } from '../hooks/useImageError';
+import { isAllowedHost, buildUnsplashUrl } from '@/lib/images';
+import { ImageFallback } from '@/components/ImageFallback';
+import { useImageError } from '@/hooks/useImageError';
 
 type ImageOrientation = 'portrait' | 'landscape' | null;
 type Props = {
